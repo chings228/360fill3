@@ -1,0 +1,32 @@
+.vid{
+
+
+    width : 200px;
+    height: 200px;
+    background-color: antiquewhite;
+}
+
+
+#mainscreen{
+
+    display:none;
+}
+
+
+
+#noidscreen{
+    display:none;
+}
+
+
+
+#guestidlink{
+
+    display:none;
+}
+
+
+#videobtndiv{
+
+    display:none;
+}
