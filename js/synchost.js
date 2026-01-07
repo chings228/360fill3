@@ -58,7 +58,8 @@ export default class SyncHost{
                 console.log(this.lastcamera)
 
                 const data = {}
-                data.key = 'camera'
+                data.key = 'map'
+                data.subkey = 'camera'
                 data.content = this.lastcamera
 
                 this.pv.sendMsg(data)
@@ -78,7 +79,8 @@ export default class SyncHost{
                 console.log("zoomChange",e)
 
                 const data = {}
-                data.key = 'zoom'
+                data.key = 'map'
+                data.subkey = 'zoom'
                 data.content = e
     
                 this.pv.sendMsg(data)
@@ -101,7 +103,8 @@ export default class SyncHost{
             if (!e.sequence ) return
 
             const data = {}
-            data.key = 'floor'
+            data.key = 'map'
+            data.subkey = 'floor'
             data.content = e
 
             this.pv.sendMsg(data)

@@ -18,9 +18,7 @@ export default class UI {
     peerid
     mid
 
-    // landscape width > height
-    isLandscape
-    
+
 
 
     constructor(){
@@ -156,8 +154,8 @@ export default class UI {
       
       
       
-        this.param.hostdivid  = 'host'
-        this.param.guestdivid = 'guest'
+        this.param.owndivid  = 'ownvid'
+        this.param.guestdivid = 'guestvid'
         this.param.isHost = this.isHost
         this.param.peerid = pid
 
@@ -201,8 +199,12 @@ export default class UI {
        
 
 
-
     }
+
+
+
+
+
 
 
 

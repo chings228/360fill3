@@ -18,6 +18,11 @@ export default class SyncMove extends Notification{
     synchost
     syncguest
 
+
+    submodule 
+
+
+
   
     peervideopath = 'https://peervideodev.1328.hk/2.0/js/class/peervideo.js'
 
@@ -34,16 +39,69 @@ export default class SyncMove extends Notification{
 
         this.isMoveDone = true
 
+        this.requestVideoBtn = $("#requestVideoBtn")
+
+
+        this.initbtn()
 
         this.initSdk()
 
+
+ 
+
     }
+
+
+    initbtn(){
+
+
+       this.requestVideoBtn.click(e=>{
+
+
+            this.requestVideo()
+
+
+        })
+    }
+
+
+
+
+    requestVideo(){
+
+        this.peervideo.startVideo()
+
+        const data = {}
+        data.content = 'requestVideo'
+        data.key = 'admin'
+    
+        console.log(data)
+    
+        this.peervideo.sendMsg(data)
+
+
+    }
+
+
+
+
+
 
 
     initSdk(){
 
 
+        /// for test usage 
+
+        this.connectPeerConnect()
+
+
+        return;
+
+
         this.mpMap = new MpMap(this.param.isHost)
+
+
         this.mpMap.connectSdk()
 
 
@@ -52,39 +110,148 @@ export default class SyncMove extends Notification{
             console.log("sdkscucess")
        
                     
-            import(this.peervideopath).then(({default:m}) => {
-                this.peervideo =  new m(this.param,e=>{
-
-
-                    console.log(this.peervideo)
-                    console.log(e)
-
-
-                    let path = "./synchost.js"
-
-                    if (!this.param.isHost){
-                        path = "./syncguest.js"
-                    }
-
-                    this.peervideo.on("chatconnected",e=>{
-
-                        console.log("chat connected")
-                    })
-
-
-                    import(path).then(({default:m})=>{
-
-
-                        new m(this.mpMap,this.peervideo)
-
-                    })
-
-                })
-
-            });
+            this.connectPeerConnect()
 
         })
 
+
+
+    }
+
+
+
+    connectPeerConnect(){
+
+      
+
+        import(this.peervideopath).then(({default:m}) => {
+
+            console.log(this.param)
+
+            this.peervideo =  new m(this.param,e=>{
+
+
+                console.log(this.peervideo)
+                console.log(e)
+
+
+                this.addPeerVideoListener()
+
+
+
+                // test , no map involved
+               // this.connectGuestHostModule(this.mpMap,this.peervideo)
+
+
+
+
+            })
+
+        });
+
+
+    }
+
+
+    addPeerVideoListener(){
+
+
+        this.peervideo.on("incomingconnection",e=>{
+
+            console.log("incoming connection")
+
+            this.setRequestVideoBtn(true)
+        })
+
+
+        this.peervideo.on("connected",e=>{
+
+
+            console.log(this.param)
+            console.log("connected")
+
+            this.setRequestVideoBtn(true)
+        })
+
+
+        this.peervideo.on("incomingdata",e=>{
+
+            //console.log(e)
+    
+    
+            this.handleText(e)
+    
+        })
+
+
+
+    }
+
+
+
+    handleText(e){
+
+        if (e.key == 'admin'){
+
+
+            if (e.content = 'requestVideo'){
+
+
+                this.peervideo.startVideo()
+            }
+
+
+
+
+        }
+        else{
+
+            if (e.key == 'map' && !this.param.isHost){
+
+
+                this.submodule.incomingdata(e) 
+
+
+            }
+
+
+
+        }
+
+
+    }
+
+
+
+
+    setRequestVideoBtn(){
+
+        if (this.param.isHost){
+
+            this.requestVideoBtn.css("display","block")
+        }
+
+
+
+    }
+
+
+
+
+    connectGuestHostModule(mpMap,peerVideo){
+
+        let path = "./synchost.js"
+
+        if (!this.param.isHost){
+            path = "./syncguest.js"
+        }
+
+        import(path).then(({default:m})=>{
+
+
+           this.submodule =  new m(mpMap,peerVideo)
+
+        })
 
 
     }

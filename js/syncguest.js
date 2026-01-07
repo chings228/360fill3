@@ -25,14 +25,14 @@ export default class SyncGuest{
     }
 
 
-    init(){
-
-        this.pv.on('incomingdata',e=>{
-
-            console.log(e.key)
+    incomingdata(e){
 
 
-            if (e.key == 'zoom'){
+
+            console.log(e.subkey)
+
+
+            if (e.subkey == 'zoom'){
 
                 console.log("zoom",e.content)
 
@@ -44,7 +44,7 @@ export default class SyncGuest{
 
 
             }
-            else if (e.key == 'floor'){
+            else if (e.subkey == 'floor'){
 
 
                 console.log("floor",e.content)
@@ -77,7 +77,7 @@ export default class SyncGuest{
 
          
 
-            else if (e.key == 'camera'){
+            else if (e.subkey == 'camera'){
 
 
                 console.log(e.content)
@@ -189,7 +189,7 @@ export default class SyncGuest{
 
             }
 
-        })
+       
 
 
     }
