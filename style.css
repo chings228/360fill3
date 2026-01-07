@@ -1,10 +1,3 @@
-.vid{
-
-
-    width : 200px;
-    height: 200px;
-    background-color: antiquewhite;
-}
 
 
 #mainscreen{
@@ -12,6 +5,21 @@
     display:none;
 }
 
+*{
+
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+
+#ownvid{
+    background-color: blueviolet;
+}
+
+#guestvid{
+
+    background-color: brown;
+}
 
 
 #noidscreen{
@@ -19,14 +27,97 @@
 }
 
 
+.vid{
+    margin : 5px;
+    width : 15vw;
+    aspect-ratio: 1;
+    min-width : 60px;
+    max-width :200px;
+    object-fit: cover;
 
-#guestidlink{
-
-    display:none;
 }
 
 
-#videobtndiv{
 
-    display:none;
+
+  /*portrait*/
+
+@media screen and (max-aspect-ratio: 1/1) {
+
+
+    .vid{
+        width : 15vh;
+
+    }
+
+    #avatarsection{
+        flex-direction: column;
+    }
+
+  }
+
+
+
+@media only screen and (max-width: 1024px) {
+    #avatarsection {
+      flex-direction: column;
+    }
+  }
+
+
+  @media only screen and (max-width: 300px) {
+    #ownvid {
+       display:none;
+    }
+  }
+
+
+
+#avatarsection{
+
+    display:flex;
+    position : absolute;
+    z-index: 10;
+    /* background-color: blue; */
+    padding : 2px;
+    left : 0px;
+    top : 0px;
+  
+}
+
+
+#controlsection{
+
+    position:absolute;
+    z-index: 10;
+    background-color: yellow;
+
+    right : 10px;
+    top : 10px;
+    padding :10px;
+}
+
+
+#showcase-iframe{
+
+    height :100vh;
+    width : 100vw;
+}
+
+#guestlinkdiv{
+
+    background-color: yellow;
+    position:absolute;
+    bottom : 10px;
+    left : 10px;
+    z-index : 10;
+    display : none;
+
+}
+
+
+#guestidlink{
+
+
+    margin-left :5px;
 }

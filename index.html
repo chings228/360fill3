@@ -11,13 +11,18 @@
 
     <script src= "https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.3/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
+
     </head>
 
 
     <body>
 
 
-      <div id="mainscreen">
+    <div id="mainscreen">
         <iframe
         width="853"
         height="480"
@@ -25,21 +30,35 @@
         frameborder="0"
        
         id="showcase-iframe">
-      </iframe>
-
-      <br><br>
-
-      <video id="hostvid" class="vid"></video>
-      <video id="guestvid" class="vid"></video>
-
-      <br>
-      <input type=text id="guestidlink" size="60">
+        </iframe>
 
 
+      
 
-      <div id="videobtndiv"><button id=requestbtn>Video</button></div>
+     
+        <div id="avatarsection">
+          <video id="ownvid" class="vid"></video>
+          <video id="guestvid" class="vid"></video>
 
-</div>
+
+        </div>
+
+        <div id = "controlsection">
+  
+
+           <button id=requesVideoBtn>Video</button>
+
+        </div>
+
+        <div id ='guestlinkdiv'>Guest Link : <div id=guestidlink></div><button id=copylink>Copy</button></div>
+
+  
+
+
+
+
+
+  </div>
 
 
 

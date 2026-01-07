@@ -17,20 +17,37 @@ export default class UI {
     
     peerid
     mid
+
+    // landscape width > height
+    isLandscape
     
 
 
     constructor(){
 
 
+
+
         this.mainscreen = $("#mainscreen")
         this.noidscreen = $("#noidscreen")
+
+
 
         this.init()
 
 
 
+
+
+
     }
+
+
+
+
+
+
+
 
 
 
@@ -122,9 +139,17 @@ export default class UI {
       
         $("#mainscreen").css("display","block")
         $("#noidscreen").css("display","none")
-        $("#showcase-iframe").attr('src',url)
+
+
+
+
+        /////////////////
+        /// reset after css change
+
+
+        //$("#showcase-iframe").attr('src',url)
       
-      
+        ////////////////////////
        
       
         this.peerid = Common.makeid(5)
@@ -151,10 +176,12 @@ export default class UI {
 
             const guestlink = `${origin}/?guestid=${pid}`
 
+            console.log(guestlink)
 
-            $("#guestidlink").val(guestlink)
 
-            $("#guestidlink").css("display","block")
+            $("#guestidlink").html(guestlink)
+
+            $("#guestlinkdiv").css("display","flex")
 
 
             window.history.pushState({},null,`${origin}/?hostid=${pid}`)
